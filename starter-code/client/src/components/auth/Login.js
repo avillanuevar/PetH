@@ -30,7 +30,7 @@ class LoginForm extends Component {
             .then(theLoggedUser => {
                 this.props.setUser(theLoggedUser.data)
                 this.setState({ username: '', password: '' })
-                this.props.history.push('/coasters')            // REDIRECCIONAMIENTO
+                this.props.history.push('/')            // REDIRECCIONAMIENTO
             })
             .catch(err => {
                 this.handleToastOpen(err.response.data.message)
