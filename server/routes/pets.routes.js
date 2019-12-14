@@ -13,7 +13,7 @@ petsRoutes.post("/create", (req, res) => {
     agresiveWithPeople,
     imageUrl
   } = req.body.name;
-  console.log(req.body);
+
   Pet.create({
     name,
     age,
@@ -32,8 +32,7 @@ petsRoutes.post("/create", (req, res) => {
       )
 
         .then(user => {
-          console.log(user);
-          res.json(pet);
+          res.json({ pet, user });
         })
         .catch(err => console.log(err));
     })
@@ -57,7 +56,7 @@ petsRoutes.post("/edit", (req, res) => {
     agresiveWithPeople,
     imageUrl,
     _id
-  } = req.body.name;  
+  } = req.body.name;
 
   const petId = _id;
 
@@ -81,7 +80,17 @@ petsRoutes.get("/delete/:id", (req, res) => {
   let petId = req.params.id;
   console.log(petId);
   Pet.findByIdAndDelete(petId)
-    .then(() => res.send({ message: "mascota borrada" }))
+    .then((pet) => {User.findByIdAndUpdate(
+        req.user._id,
+        { $pull: { pets: pet._id } },
+        { new: true }
+      )
+     .then(user => {
+          res.json({ user });
+        })
+        .catch(err => console.log(err));
+    
+    })
     .catch(err => console.log(err));
 });
 

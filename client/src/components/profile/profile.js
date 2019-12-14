@@ -1,33 +1,41 @@
 import React, { Component } from "react";
 import { Button, Modal, Container, Row, Col } from "react-bootstrap";
-import Service from "../../service/Profile.service";
+import ProfileService from "../../service/Profile.service";
 import { Link } from "react-router-dom";
 import EditProfile from "./editProfile";
+import CreateHome from "../host/createHome";
+
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this._service = new Service();
+    this._profileService = new ProfileService();
     this.state = {
-      showModalWindow: false
+      showModalWindow: false,
+      showModalWindow2: false
     };
   }
+  handleShow2 = () => this.setState({ showModalWindow2: true });
+  handleClose2 = () => this.setState({ showModalWindow2: false });
   handleShow = () => this.setState({ showModalWindow: true });
   handleClose = () => this.setState({ showModalWindow: false });
   componentDidMount = () => this.getProfile();
   getProfile = () => {
-    this._service
+    this._profileService
       .profile()
       .then(user => this.props.setTheUser(user.data))
       .catch(err => console.log(err));
   };
+
   render() {
-    
     if (this.props.loggedInUser) {
       return (
         <>
           <Container>
             <h1>Profile</h1>
+            <Button variant="dark" onClick={this.handleShow2}>
+             Become a Host
+            </Button>
             <Row>
               <Col md={6}>
                 <img
@@ -63,6 +71,18 @@ class Profile extends Component {
                 closeModalWindow={this.handleClose}
                 update={this.props.setTheUser}
                 content={this.props.loggedInUser}
+              />
+            </Modal.Body>
+          </Modal>
+          <Modal show={this.state.showModalWindow2} onHide={this.handleClose2}>
+            <Modal.Header closeButton>
+              <Modal.Title>Become a host</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <CreateHome
+                closeModalWindow={this.handleClose2}
+                update={this.getProfile}
+                setTheUser={this.props.setTheUser}
               />
             </Modal.Body>
           </Modal>

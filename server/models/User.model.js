@@ -17,7 +17,7 @@ const userSchema = new Schema(
       enum: ["client", "host"]
     },
     pets: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
-    house: { type: Schema.Types.ObjectId, ref: "House" },
+    home: { type: Schema.Types.ObjectId, ref: "House" },
     houseReservation: {
       type: Schema.Types.ObjectId,
       ref: "Reservation"

@@ -27,6 +27,7 @@ class MyPets extends React.Component {
   deletePet = pet => {
     this._petService.delete(pet);
     this.getProfile();
+    
   };
 
   render() {
@@ -60,6 +61,7 @@ class MyPets extends React.Component {
               <NewPet
                 closeModalWindow={this.handleClose}
                 update={this.getProfile}
+                setTheUser={this.props.setTheUser}
               />
             </Modal.Body>
           </Modal>

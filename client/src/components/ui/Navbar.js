@@ -15,6 +15,16 @@ class Navigation extends Component {
       .then(x => this.props.setUser(false))
       .catch(err => console.log(err));
   };
+  host=()=>{
+  return (
+    this.props.loggedInUser.class == "host" && (
+      <Nav.Link as="li">
+        <Link to="/myHome">My Home</Link>
+      </Nav.Link>
+    )
+  );
+
+  }
 
   render() {
     const saludo = this.props.loggedInUser
@@ -39,6 +49,7 @@ class Navigation extends Component {
             <Nav.Link as="li">
               <Link to="/reservations">My profile</Link>
             </Nav.Link>
+            {this.host()}
             <Nav.Link as="li" onClick={this.logoutUser}>
               Logout
             </Nav.Link>

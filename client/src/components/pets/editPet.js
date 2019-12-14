@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import PetService from "../../service/Pet.service";
 import FilesService from "../../service/Files.service";
 
-class EditProfile extends Component {
+class EditPet extends Component {
     constructor(props) {
         super(props);
         this._petService = new PetService();
@@ -114,4 +114,4 @@ class EditProfile extends Component {
     }
 }
 
-export default EditProfile;
+export default EditPet;

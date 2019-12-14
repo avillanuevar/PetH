@@ -7,7 +7,8 @@ import Login from "./components/auth/Login";
 import Navbar from "./components/ui/Navbar";
 import Profile from "./components/profile/profile";
 import MyPets from "./components/pets/myPets";
-import petDetails from './components/pets/petDetails';
+import petDetails from "./components/pets/petDetails";
+import MyHome from "./components/host/myHome";
 
 class App extends Component {
   constructor() {
@@ -64,6 +65,10 @@ class App extends Component {
             render={() => <MyPets loggedInUser={this.state.loggedInUser} setTheUser={this.setTheUser} />}
           />
           <Route path="/petDetails/:id" component={petDetails} />
+          <Route
+            exact path="/myHome"
+            render={() => <MyHome loggedInUser={this.state.loggedInUser} setTheUser={this.setTheUser} />}
+          />
 
         </Switch>
       </>

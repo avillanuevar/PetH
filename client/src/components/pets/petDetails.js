@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import EditPet from './editPet'
-import Service from "../../service/Pet.service";
+import PetService from "../../service/Pet.service";
 import { Container, Row, Col, Modal,Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -10,14 +10,14 @@ class PetDetail extends Component {
     this.state = { 
       pet: {},
   };
-    this._service = new Service();
+    this._petService = new PetService();
   }
   handleShow = () => this.setState({ showModalWindow: true });
   handleClose = () => this.setState({ showModalWindow: false });
   
   componentDidMount = () => {
     const petId = this.props.match.params.id;
-    this._service
+    this._petService
       .details(petId)
       .then(thePet => this.setState({ pet: thePet.data }))
       .catch(err => console.log(err));
