@@ -13,19 +13,20 @@ class ReservationDetails extends Component{
         const reservationId = this.props.match.params.id;
         console.log(reservationId)
         this._reservationService.details(reservationId)
-            .then(reservationFromDB => {
-                return this.setState({ reservation: reservationFromDB.data })
-            })
-            .then(() => {
-                
-                console.log(this.state.result)
-            })
+            .then(reservationFromDB => this.setState({ reservation: reservationFromDB.data }))
+            .then(() =>console.log(this.state.reservation.details.home.title))
             .catch(err => console.log("Error", err))
     }
     render(){
-        return(
+        console.log(this.state.reservation);
+        return (
+          <div>
+            {this.state.reservation!={}&&(
             <h1>{this.state.reservation.details.home.title}</h1>
-        )
+
+            )}
+          </div>
+        );
     }
 
 }
