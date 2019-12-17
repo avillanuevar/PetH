@@ -11,19 +11,21 @@ class Profile extends Component {
     super(props);
     this._profileService = new ProfileService();
     this.state = {
-      showModalWindow: false,
-      showModalWindow2: false
+      showModalEditWindow: false,
+      showModalHostWindow: false
     };
   }
-  handleShow2 = () => this.setState({ showModalWindow2: true });
-  handleClose2 = () => this.setState({ showModalWindow2: false });
-  handleShow = () => this.setState({ showModalWindow: true });
-  handleClose = () => this.setState({ showModalWindow: false });
+  handleHostShow = () => this.setState({ showModalHostWindow: true });
+  handleHostClose = () => this.setState({ showModalHostWindow: false });
+  handleEditShow = () => this.setState({ showModalEditWindow: true });
+  handleEditClose = () => this.setState({ showModalEditWindow: false });
   componentDidMount = () => this.getProfile();
   getProfile = () => {
     this._profileService
       .profile()
-      .then(user => this.props.setTheUser(user.data))
+      .then(user => {
+        console.log(user)
+        this.props.setTheUser(user.data)})
       .catch(err => console.log(err));
   };
 
@@ -33,8 +35,8 @@ class Profile extends Component {
         <>
           <Container>
             <h1>Profile</h1>
-            <Button variant="dark" onClick={this.handleShow2}>
-             Become a Host
+            <Button variant="dark" onClick={this.handleHostShow}>
+              Become a Host
             </Button>
             <Row>
               <Col md={6}>
@@ -55,32 +57,55 @@ class Profile extends Component {
                   <strong>Descriotion:</strong>{" "}
                   {this.props.loggedInUser.description}
                 </p>
-                <Button variant="dark" onClick={this.handleShow}>
+                <Button variant="dark" onClick={this.handleEditShow}>
                   Editar Usuario
                 </Button>
               </Col>
             </Row>
-            <p>{this.props.loggedInUser.pets[0].name}</p>
+            <Row>
+              <Col md={6}>
+                {this.props.loggedInUser.pets.map(pet => {
+                  return (
+                    <Link to={`/petDetails/${pet._id}`}>
+                      <img src={pet.imageUrl} />
+                      <p>{pet.name}</p>
+                    </Link>
+                  );
+                })}
+              </Col>
+              <Col md={6}>
+                <Link to="/myHome">
+                  <img src={this.props.loggedInUser.home.imageUrl} />
+                  <p>{this.props.loggedInUser.home.title}</p>
+                </Link>
+              </Col>
+            </Row>
           </Container>
-          <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
+          <Modal
+            show={this.state.showModalEditWindow}
+            onHide={this.handleEditClose}
+          >
             <Modal.Header closeButton>
               <Modal.Title>Edit Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <EditProfile
-                closeModalWindow={this.handleClose}
+                closeModalWindow={this.handleEditClose}
                 update={this.props.setTheUser}
                 content={this.props.loggedInUser}
               />
             </Modal.Body>
           </Modal>
-          <Modal show={this.state.showModalWindow2} onHide={this.handleClose2}>
+          <Modal
+            show={this.state.showModalHostWindow}
+            onHide={this.handleHostClose}
+          >
             <Modal.Header closeButton>
               <Modal.Title>Become a host</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <CreateHome
-                closeModalWindow={this.handleClose2}
+                closeModalWindow={this.handleHostClose}
                 update={this.getProfile}
                 setTheUser={this.props.setTheUser}
               />

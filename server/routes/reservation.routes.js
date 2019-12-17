@@ -3,6 +3,18 @@ const reservationsRoutes = express.Router();
 const Reservation = require("../models/Reservation.model");
 const User = require("../models/User.model");
 
+reservationsRoutes.get('/',(red,res)=>{
+  Reservation.find()
+    .populate({
+      path: 'details',
+      populate: {
+        path: 'home',
+      }
+    })
+    .then(allReservations => res.json(allReservations))
+    .catch(err => console.log('DB error', err))
+})
+
 reservationsRoutes.post("/create", (req, res) => {
   const {
     price,
@@ -12,8 +24,8 @@ reservationsRoutes.post("/create", (req, res) => {
     endDay,
     endMonth,
     endYear
-  } = req.body;
-    
+  } = req.body.price  ;
+
   Reservation.create({
     price,
     startDay,
@@ -41,8 +53,16 @@ reservationsRoutes.post("/create", (req, res) => {
 
 reservationsRoutes.get("/details/:id", (req, res) => {
   const reservationId = req.params.id;
+ 
   Reservation.findById(reservationId)
-    .then(theReservation => res.json(theReservation))
+    .populate({
+     path: 'details',
+     populate:{
+       path:'home',
+     }
+    })
+    .then(theReservation => {
+      return res.json(theReservation)})
     .catch(err => console.log("DB error", err));
 });
 
@@ -56,8 +76,10 @@ reservationsRoutes.post("/edit", (req, res) => {
     endMonth,
     endYear,
     client,
+    totalPrice,
     _id
-  } = req.body;
+  } = req.body.price;
+  
 
   const reservationId = _id;
 
@@ -71,6 +93,7 @@ reservationsRoutes.post("/edit", (req, res) => {
       endDay,
       endMonth,
       endYear,
+      totalPrice,
       $addToSet: { clients: client }
     },
     { new: true }

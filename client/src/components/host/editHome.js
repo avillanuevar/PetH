@@ -31,7 +31,7 @@ class EditHome extends Component {
       .then(x => {
         this.props.closeModalWindow();
         this.props.update();
-        console.log(this.state.home._id);
+        console.log(this.state.home);
       })
       .catch(err => console.log(err));
   };

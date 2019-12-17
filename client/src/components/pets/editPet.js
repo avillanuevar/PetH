@@ -37,6 +37,7 @@ class EditPet extends Component {
 
     handleInputChange = e => {
         let { name, value } = e.target;
+        if (name == "agresiveWithAnimals" || name == "agresiveWithPeople") value = e.target.checked;
         this.setState({
             pet: { ...this.state.pet, [name]: value }
         });
@@ -65,51 +66,78 @@ class EditPet extends Component {
 
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="name"
-                        onChange={this.handleInputChange}
-                        value={this.state.pet.name}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Descripción</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="description"
-                        onChange={this.handleInputChange}
-                        value={this.state.pet.description}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Age</Form.Label>
-                    <Form.Control
-                        type="number"
-                        name="age"
-                        onChange={this.handleInputChange}
-                        value={this.state.pet.phone}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Imagen URL (archivo)</Form.Label>
-                    <Form.Control
-                        name="imageUrl"
-                        type="file"
-                        onChange={this.handleFileUpload}
-                    />
-                </Form.Group>
-                <Button
-                    variant="dark"
-                    size="sm"
-                    type="submit"
-                    disabled={this.state.disabledButton}
-                >
-                    {this.state.buttonText}
-                </Button>
-            </Form>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                onChange={this.handleInputChange}
+                value={this.state.pet.name}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Descripción</Form.Label>
+              <Form.Control
+                type="text"
+                name="description"
+                onChange={this.handleInputChange}
+                value={this.state.pet.description}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Age</Form.Label>
+              <Form.Control
+                type="number"
+                name="age"
+                onChange={this.handleInputChange}
+                value={this.state.pet.age}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Imagen URL (archivo)</Form.Label>
+              <Form.Control
+                name="imageUrl"
+                type="file"
+                onChange={this.handleFileUpload}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Care Details</Form.Label>
+              <Form.Control
+                type="text"
+                name="careDetails"
+                onChange={this.handleInputChange}
+                value={this.state.pet.careDetails}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Is he Agresive with other pets?</Form.Label>
+              <Form.Control
+                type="checkbox"
+                name="agresiveWithAnimals"
+                onChange={this.handleInputChange}
+                checked={this.state.pet.agresiveWithAnimals}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Is he Agresive with people?</Form.Label>
+              <Form.Control
+                type="checkbox"
+                name="agresiveWithPeople"
+                onChange={this.handleInputChange}
+                checked={this.state.pet.agresiveWithPeople}
+              />
+            </Form.Group>
+            <Button
+              variant="dark"
+              size="sm"
+              type="submit"
+              disabled={this.state.disabledButton}
+            >
+              {this.state.buttonText}
+            </Button>
+          </Form>
         );
     }
 }

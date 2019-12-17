@@ -6,6 +6,7 @@ profileRoutes.get("/", (req, res) => {
   const userId = req.user._id;
   User.findById(userId)
     .populate("pets")
+    .populate('home')
     .then(theUser => {
       // console.log(theUser);
       res.json(theUser);

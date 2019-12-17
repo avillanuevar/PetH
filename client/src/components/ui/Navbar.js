@@ -33,7 +33,9 @@ class Navigation extends Component {
 
     return this.props.loggedInUser ? (
       <Navbar bg="dark" variant="dark" expand="md">
-        <Navbar.Brand>PetVille</Navbar.Brand>
+        <Navbar.Brand><Nav.Link as="li">
+          <Link to="/">PetH</Link>
+        </Nav.Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav className="mr-auto">
@@ -47,7 +49,7 @@ class Navigation extends Component {
               <Link to="/myPets">My Pets</Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/reservations">My profile</Link>
+              <Link to="/reservations">Reservations</Link>
             </Nav.Link>
             {this.host()}
             <Nav.Link as="li" onClick={this.logoutUser}>
