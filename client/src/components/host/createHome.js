@@ -131,6 +131,7 @@ class HomeForm extends Component {
               onChange={this.handleInputChange}
               value={this.state.home.home}
             >
+              <option>Selecte one</option>
               <option>Apartment</option>
               <option>House</option>
             </Form.Control>

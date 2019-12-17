@@ -73,12 +73,14 @@ class Profile extends Component {
                   );
                 })}
               </Col>
-              <Col md={6}>
-                <Link to="/myHome">
-                  <img src={this.props.loggedInUser.home.imageUrl} />
-                  <p>{this.props.loggedInUser.home.title}</p>
-                </Link>
-              </Col>
+              {this.props.loggedInUser.class == "host" && (
+                <Col md={6}>
+                  <Link to="/myHome">
+                    <img src={this.props.loggedInUser.home.imageUrl} />
+                    <p>{this.props.loggedInUser.home.title}</p>
+                  </Link>
+                </Col>
+              )}
             </Row>
           </Container>
           <Modal

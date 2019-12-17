@@ -24,7 +24,7 @@ class ReservationDetails extends Component{
     }
     render(){
         return(
-            <h1>hola</h1>
+            <h1>{this.state.reservation.details.home.title}</h1>
         )
     }
 
