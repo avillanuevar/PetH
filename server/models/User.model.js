@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const Pet = require("./Pet.model");
 const Reservation = require("./Reservation.model");
 const House = require("./House.model");
+const Notifications = require("./Notifications.model");
+const Users = require("./User.model");
 
 const userSchema = new Schema(
   {
@@ -13,6 +15,7 @@ const userSchema = new Schema(
     imageUrl: String,
     phone: Number,
     description: String,
+    notification: [{ type: Schema.Types.ObjectId, ref: "Notification" }],
     class: {
       type: String,
       default: "client",
@@ -24,7 +27,7 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Reservation"
     },
-    petReservation: { type: Schema.Types.ObjectId, ref: "Reservation" }
+    petReservation: [{ type: Schema.Types.ObjectId, ref: "Reservation" }]
   },
   {
     timestamps: true

@@ -16,6 +16,7 @@ app.use("/api/files", require("./routes/files.routes"));
 app.use("/api/pets", require("./routes/pets.routes"));
 app.use("/api/host", require("./routes/host.routes"));
 app.use("/api/reservation", require("./routes/reservation.routes"));
+app.use("/api/notification", require("./routes/notification.routes"));
 
 app.use((req, res) => { res.sendFile(__dirname + "/public/index.html"); });
 

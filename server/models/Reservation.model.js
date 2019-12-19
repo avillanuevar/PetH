@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const User = require('./User.model.js')
 const House = require("./House.model");
+const Pet = require("./Pet.model");
 
 const reservationSchema = new Schema(
   {
@@ -17,7 +18,7 @@ const reservationSchema = new Schema(
     endDay: Number,
     endMonth: Number,
     endYear: Number,
-    clients: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    client: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
     details: { type: Schema.Types.ObjectId, ref: "User" },
     totalPrice:Number
   },

@@ -10,7 +10,9 @@ import MyPets from "./components/pets/myPets";
 import petDetails from "./components/pets/petDetails";
 import MyHome from "./components/host/myHome";
 import Home from './components/ui/Home'
-import ReservationDetails from './components/reservations/reservationDetails'
+import ReservationDetails from "./components/reservations/reservationDetails";
+import Reservations from "./components/reservations/myReservation";
+import RequestDetails from "./components/request/requestDetail";
 
 class App extends Component {
   constructor() {
@@ -72,8 +74,17 @@ class App extends Component {
             exact path="/myHome"
             render={() => <MyHome loggedInUser={this.state.loggedInUser} setTheUser={this.setTheUser} />}
           />
-          <Route path="/reservationDetails/:id" component={ReservationDetails} />
 
+          <Route
+            exact path="/reservationDetails/:id"
+            render={match => <ReservationDetails {...match} loggedInUser={this.state.loggedInUser} setTheUser={this.setTheUser} />}
+          />
+          <Route path="/requestDetail/:id" component={RequestDetails} />
+
+          <Route
+            exact path="/reservations"
+            render={() => <Reservations loggedInUser={this.state.loggedInUser} setTheUser={this.setTheUser}/>}
+          />
         </Switch>
       </>
     );

@@ -111,62 +111,60 @@ class Home extends Component{
             sundayFirst: false
         };
 
-        return(
-            <Container className="pet-details">
-            <h1>hola</h1>
-            <section>
+        return (
+          <div className="greyBack home">
+            <Container>
+              <h1 className="h1">PetHotel</h1>
+              <section>
                 <Row>
-                        <Col md={6}>
-                            <label>introduce dates</label>
-                            <DateTimeRangeContainer
-                                start={this.state.start}
-                                end={this.state.end}
-                                local={local}
-                                applyCallback={this.applyCallback}
-                            >
-                                <FormControl
-                                    id="formControlsTextB"
-                                    type="text"
-                                    label="Text"
-                                    placeholder="Enter text"
-                                />
-                            </DateTimeRangeContainer>
-                        </Col>
-                   
-                            <Form onSubmit={this.handleSubmit}>
-                                <Form.Group>
-                                    <Form.Label>Where do you need it?</Form.Label>
-                                    <Form.Control
-                                        type="string"
-                                        name="city"
-                                        onChange={this.handleInputChange}
-                                        value={this.state.reservation.city}
-                                    />
-                                </Form.Group>
-
-                                <Button variant="dark" size="sm" type="submit">
-                                    Search for Peth
-                                 </Button>
-
-                            </Form>
-                       
-                </Row>
-                    <Modal
-                        show={this.state.showModalWindowSearch}
-                        onHide={this.handleSearchClose}
+                  <Col md={6}>
+                    <label>introduce dates</label>
+                    <DateTimeRangeContainer
+                      start={this.state.start}
+                      end={this.state.end}
+                      local={local}
+                      applyCallback={this.applyCallback}
                     >
-                        <Modal.Header closeButton>
-                            <Modal.Title>Search Details</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <SearchHome
-                               search={this.state.reservation}
-                            />
-                        </Modal.Body>
-                    </Modal>
+                      <FormControl
+                        id="formControlsTextB"
+                        type="text"
+                        label="Text"
+                        placeholder="Enter text"
+                      />
+                    </DateTimeRangeContainer>
+                  </Col>
+
+                  <Form onSubmit={this.handleSubmit}>
+                    <Form.Group>
+                      <Form.Label>Where do you need it?</Form.Label>
+                      <Form.Control
+                        type="string"
+                        name="city"
+                        onChange={this.handleInputChange}
+                        value={this.state.reservation.city}
+                      />
+                    </Form.Group>
+
+                    <button size="sm" type="submit">
+                      Search for Peth
+                    </button>
+                  </Form>
+              </Row>
+              <Modal
+                show={this.state.showModalWindowSearch}
+                onHide={this.handleSearchClose}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Search Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <SearchHome search={this.state.reservation} />
+                </Modal.Body>
+              </Modal>
             </section>
-            </Container>
-        )
+          </Container>
+                </div>
+        );
     }
 }
 export default Home;

@@ -67,6 +67,7 @@ class Profile extends Component {
                 {this.props.loggedInUser.pets.map(pet => {
                   return (
                     <Link to={`/petDetails/${pet._id}`}>
+                    
                       <img src={pet.imageUrl} />
                       <p>{pet.name}</p>
                     </Link>

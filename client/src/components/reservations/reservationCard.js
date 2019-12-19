@@ -73,9 +73,11 @@ class ReservationCard extends Component{
         this.setState({reservation: { ...this.state.reservation, totalPrice: totalPrice }});
     }
    render(){
+       console.log(this.props)
 return(
     <div>
-        <Link to={`reservationDetails/${this.props._id}`}>
+    {this.props._id ? ( 
+        <Link to={`/reservationDetails/${this.props._id}`}>
             <Container> 
                 <Row>
                     <Col md={3}>
@@ -92,6 +94,7 @@ return(
                 </Row>
             </Container>
         </Link>
+    ):  null}
     </div>
 )
    }

@@ -5,14 +5,21 @@ const User = require("../models/User.model");
 
 reservationsRoutes.get('/',(red,res)=>{
   Reservation.find()
+    .populate("client")
     .populate({
-      path: 'details',
+      path: "details",
       populate: {
-        path: 'home',
+        path: "home"
       }
     })
+    // .populate({
+    //   path: "client",
+    //   populate: {
+    //     path: "pets"
+    //   }
+    // })
     .then(allReservations => res.json(allReservations))
-    .catch(err => console.log('DB error', err))
+    .catch(err => console.log("DB error", err));
 })
 
 reservationsRoutes.post("/create", (req, res) => {
@@ -39,7 +46,7 @@ reservationsRoutes.post("/create", (req, res) => {
     .then(reservation => {
       User.findByIdAndUpdate(
         req.user._id,
-        { reservation: reservation._id },
+        { houseReservation: reservation._id },
         { new: true }
       )
 
@@ -56,13 +63,15 @@ reservationsRoutes.get("/details/:id", (req, res) => {
  
   Reservation.findById(reservationId)
     .populate({
-     path: 'details',
-     populate:{
-       path:'home',
-     }
+      path: "details",
+      populate: {
+        path: "home"
+      }
     })
+    .populate("client")
     .then(theReservation => {
-      return res.json(theReservation)})
+      return res.json(theReservation);
+    })
     .catch(err => console.log("DB error", err));
 });
 
@@ -94,7 +103,7 @@ reservationsRoutes.post("/edit", (req, res) => {
       endMonth,
       endYear,
       totalPrice,
-      $addToSet: { clients: client }
+      $addToSet: { client: client }
     },
     { new: true }
   )
@@ -118,5 +127,6 @@ reservationsRoutes.get("/delete/:id", (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
 
 module.exports = reservationsRoutes;

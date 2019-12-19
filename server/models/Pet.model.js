@@ -13,6 +13,10 @@ const petSchema = new Schema(
       type: Boolean,
       default: false
     },
+    selected:{
+      type:Boolean,
+      default:false
+    },
     agresiveWithPeople: {
       type: Boolean,
       default: false

@@ -16,7 +16,8 @@ class EditProfile extends Component {
         name: this.props.content.name,
         description: this.props.content.description,
         phone: this.props.content.phone,
-        imageUrl: this.props.content.imageUrl
+        imageUrl: this.props.content.imageUrl,
+        _id: this.props.content._id
       }
     };
   }

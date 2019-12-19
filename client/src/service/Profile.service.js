@@ -9,7 +9,8 @@ export default class Services {
         })
     }
 
-    edit = (imageUrl, description,phone, name) => this._service.post('/profile/edit', { phone, description, imageUrl, name})
+    edit = (imageUrl, description,phone, name,_id) => this._service.post('/profile/edit', { phone, description, imageUrl, name})
     
     profile = () => this._service.get('/profile')
+    addReservation=(_id,petReservation)=>this._service('/profile/addReservation',{petReservation})
 }
