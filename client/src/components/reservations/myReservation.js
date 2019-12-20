@@ -76,7 +76,7 @@ class MyReservations extends Component {
               ) : (
                 <div>
                   <h2>Reservations for your Pets</h2>
-                  {this.state.user.petReservation? this.state.user.petReservation.map(elm =>
+                  {this.state.user.petReservation==[] ? this.state.user.petReservation.map(elm =>
                     elm.client.map(pet => (
                       <img src={pet.imageUrl} alt={pet.name}></img>
                     ))
