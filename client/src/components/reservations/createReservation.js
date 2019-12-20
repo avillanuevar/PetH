@@ -38,6 +38,7 @@ class PetForm extends Component {
         this.props.setTheUser(x.data.user);
       })
       .catch(err => console.log(err));
+      this.props.history.push("/");
   };
 
   handleInputChange = e => {

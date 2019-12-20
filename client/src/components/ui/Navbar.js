@@ -17,6 +17,7 @@ class Navigation extends Component {
     this._authService.logout()
       .then(x => this.props.setUser(false))
       .catch(err => console.log(err))
+      ;
   }
 
   host = () => {
