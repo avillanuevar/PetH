@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Modal, Button, FormControl, Form } from "react-bootstrap";
+import { Container, Row, Col, Modal, button, FormControl, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DateTimeRangeContainer from "react-advanced-datetimerange-picker";
 import moment from "moment";
@@ -112,11 +112,12 @@ class Home extends Component{
         };
 
         return (
-          <div className="greyBack home">
+         
+              <section className="greyBack home">
+          
             <Container>
               <h1 className="h1">PetHotel</h1>
-              <section>
-                <Row>
+                <Row className='display around i'>
                   <Col md={6}>
                     <label>introduce dates</label>
                     <DateTimeRangeContainer
@@ -134,7 +135,7 @@ class Home extends Component{
                     </DateTimeRangeContainer>
                   </Col>
 
-                  <Form onSubmit={this.handleSubmit}>
+                  <Form className='display' onSubmit={this.handleSubmit}>
                     <Form.Group>
                       <Form.Label>Where do you need it?</Form.Label>
                       <Form.Control
@@ -146,24 +147,27 @@ class Home extends Component{
                     </Form.Group>
 
                     <button size="sm" type="submit">
-                      Search for Peth
+                      <strong>Search for Peth</strong>
                     </button>
                   </Form>
+                <p className='marginP' >Don't have a user?  <Link className='link2' to='/signup'>SignUp</Link> || <Link className='link2' to='/login'>LogIn</Link> </p>
               </Row>
               <Modal
                 show={this.state.showModalWindowSearch}
                 onHide={this.handleSearchClose}
               >
-                <Modal.Header closeButton>
+                <Modal.Header closebutton>
                   <Modal.Title>Search Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <SearchHome search={this.state.reservation} />
                 </Modal.Body>
               </Modal>
-            </section>
           </Container>
-                </div>
+                
+            </section>
+          
+          
         );
     }
 }

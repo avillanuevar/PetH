@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Modal, Container, Row, Col } from "react-bootstrap";
+import { button, Modal, Container, Row, Col } from "react-bootstrap";
 import ProfileService from "../../service/Profile.service";
 import { Link } from "react-router-dom";
 
@@ -34,23 +34,28 @@ class MyReservations extends Component {
   render() {
   
       return (
-        <>
-          <h1>My Reservations</h1>
-          <Container>
-            <Row>
+        <div className='home'>
+          <h1 className='resH1 '>My Reservations</h1>
+         
               {this.state.user.class == "host" ? (
-                <div>
-                  <Col md={6}>
+                <div className='display evenly'>
+                
+                  <div>
                     <h2>Reservations for your Pets</h2>
                     {this.state.user.petReservation.map(elm =>
                       elm.client.map(pet => (
-                        <img src={pet.imageUrl} alt={pet.name}></img>
+                        <div className='modalMarginB'>
+                          <img className='myResImg' src={pet.imageUrl} alt={pet.name}></img>
+                          <h4 className='myResP'>{pet.name}</h4>
+                        </div>
                       ))
                     )}
-                  </Col>
-                  <Col md={6}>
+                  </div>
+                  <div >
                     <div>
-                      <img
+                      <h2>Reservations on your house</h2>
+                  <div className='textCenter' >
+                      <img className='myResImg2'
                         src={
                           this.state.user.houseReservation.details.home.imageUrl
                         }
@@ -64,8 +69,9 @@ class MyReservations extends Component {
                       {this.state.user.houseReservation.client.map(elm => (
                         <img src={elm.imageUrl} alt={elm.name}></img>
                       ))}
-                    </div>
-                  </Col>
+                  </div>
+                </div>
+                  </div>
                 </div>
               ) : (
                 <div>
@@ -78,9 +84,8 @@ class MyReservations extends Component {
                   }
                 </div>
               )}
-            </Row>
-          </Container>
-        </>
+          
+        </div>
       );
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Container } from "react-bootstrap";
+import { button, Form, Container } from "react-bootstrap";
 
 import Service from "../../service/Auth.service";
 
@@ -61,9 +61,9 @@ class SignupForm extends Component {
               value={this.state.password}
             />
           </Form.Group>
-          <Button variant="dark" type="submit">
+          <button variant="dark" type="submit">
             Registrarme
-          </Button>
+          </button>
         </Form>
       </Container>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Button, Modal } from "react-bootstrap";
+import { Container, Row, button, Modal } from "react-bootstrap";
 import UserService from "../../service/Profile.service";
 import PetService from "../../service/Pet.service";
 import PetCard from "./petCard";
@@ -34,13 +34,13 @@ class MyPets extends React.Component {
     if (this.props.loggedInUser) {
       console.log(this.props.loggedInUser.pets);
       return (
-        <section>
+        <section className='home'>
           <Container>
-            <h1>Your Pets</h1>
+            <h1 className='marginT orange marginB0'>Your Pets</h1>
 
-            <Button variant="dark" onClick={this.handleShow}>
+            <button className='marginEdit secMarginB' onClick={this.handleShow}>
               Add a new pet
-            </Button>
+            </button>
 
             <Row>
               {this.props.loggedInUser.pets.map(pet => (
@@ -54,7 +54,7 @@ class MyPets extends React.Component {
           </Container>
 
           <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
-            <Modal.Header closeButton>
+            <Modal.Header closebutton>
               <Modal.Title>Tell us about your pet</Modal.Title>
             </Modal.Header>
             <Modal.Body>

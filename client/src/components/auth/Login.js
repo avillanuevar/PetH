@@ -40,12 +40,12 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <>
-        <h1>Iniciar sesión</h1>
+      <section className='home0'>
+        <h1 className='marginT'>Iniciar sesión</h1>
 
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Usuario</label>
+          <div className='imgPetCard'>
+            <label>Username:</label>
             <input
               type="text"
               name="username"
@@ -53,8 +53,8 @@ class LoginForm extends Component {
               value={this.state.username}
             />
           </div>
-          <div>
-            <label>Contraseña</label>
+          <div className='imgPetCard orange'>
+            <label>Password:</label>
             <input
               type="password"
               name="password"
@@ -64,7 +64,7 @@ class LoginForm extends Component {
           </div>
           <button type="submit">Iniciar sesión</button>
         </form>
-      </>
+      </section>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { button, Form, FormControl } from "react-bootstrap";
 
 import ReservationService from "../../service/Reservation.service";
 import DateTimeRangeContainer from "react-advanced-datetimerange-picker";
@@ -144,9 +144,9 @@ class PetForm extends Component {
           </Form.Group>
 
 
-          <Button variant="dark" size="sm" type="submit">
+          <button variant="dark" size="sm" type="submit">
             Post Reservation
-          </Button>
+          </button>
         </Form>
       </div>
     );

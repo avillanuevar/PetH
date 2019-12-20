@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form } from "react-bootstrap";
+import { button, Form } from "react-bootstrap";
 
 import UserService from "../../service/Profile.service";
 import FilesService from "../../service/Files.service";
@@ -10,13 +10,14 @@ class EditProfile extends Component {
     this._userService = new UserService();
     this._filesService = new FilesService();
     this.state = {
-      disabledButton: false,
+      disabledbutton: false,
       buttonText: "editar perfil",
       user: {
         name: this.props.content.name,
         description: this.props.content.description,
         phone: this.props.content.phone,
         imageUrl: this.props.content.imageUrl,
+        notification: this.props.content.notification,
         _id: this.props.content._id
       }
     };
@@ -41,7 +42,7 @@ class EditProfile extends Component {
   };
 
   handleFileUpload = e => {
-    this.setState({ disabledButton: true, buttonText: "Subiendo imagen..." });
+    this.setState({ disabledbutton: true, buttonText: "Subiendo imagen..." });
 
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
@@ -53,7 +54,7 @@ class EditProfile extends Component {
           response.data.secure_url
         );
         this.setState({
-          disabledButton: false,
+          disabledbutton: false,
           buttonText: "Editar usuario",
           user: { ...this.state.user, imageUrl: response.data.secure_url }
         });
@@ -99,14 +100,14 @@ class EditProfile extends Component {
             onChange={this.handleFileUpload}
           />
         </Form.Group>
-        <Button
+        <button
           variant="dark"
           size="sm"
           type="submit"
-          disabled={this.state.disabledButton}
+          disabled={this.state.disabledbutton}
         >
           {this.state.buttonText}
-        </Button>
+        </button>
       </Form>
     );
   }

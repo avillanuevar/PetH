@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import NotificationService from "../../service/Notification.service";
 import ProfileService from "../../service/Profile.service";
 import ReservationService from "../../service/Reservation.service";
-import { Container, Row, Col, Modal, Button } from "react-bootstrap";
+import { Container, Row, Col, Modal, button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class NotificationDetail extends Component {
@@ -31,9 +31,9 @@ class NotificationDetail extends Component {
   };
   agresiveMessage = pet => {
     if (pet.agresiveWithPeople && pet.agresiveWithAnimals)
-      return "Aggressive: with People & other Animals";
-    if (pet.agresiveWithPeople) return "Aggressive: with People";
-    if (pet.agresiveWithAnimals) return "Aggressive: with other Animals";
+      return (<div className='display'><p className='orange '>Aggressive:</p><p> with People & other Animals</p></div>)
+    if (pet.agresiveWithPeople) return <div className='display'><p className='orange '>Aggressive:<p> with People</p></p></div>;
+    if (pet.agresiveWithAnimals) return <div className='display'><p className='orange '>Aggressive: </p> <p>with other Animals</p></div>;
   };
   accept = e => {
     let copyPets = [...this.state.notification.pets];
@@ -48,11 +48,8 @@ class NotificationDetail extends Component {
       imageUrl: this.state.notification.reciver.imageUrl,
       copyPets: copyPets
     });
-    // this.state.notification.pets.map(pet=>{
-    //     console.log(pet)
-    //   this._reservationService.addClient({_id:this.state.notification.reciver.houseReservation,client:pet._id})
-    //     this.eliminateNotification()
-    // })
+    this.props.history.push('/')
+   
   };
   eliminateNotification = e => {
     let index = this.state.notification.reciver.notification.indexOf(
@@ -70,17 +67,19 @@ class NotificationDetail extends Component {
       petReservation: this.state.notification.reciver.houseReservation
     });
     this._notificationService.delete(this.state.notification.reciver._id);
+    this.props.history.push('/')
   };
 
   render() {
-    console.log(this.state.notification);
+    
     return (
+      <div className='backDetails'>
       <Container className="pet-details">
-        <h1>hola</h1>
-        <section>
+        <h1 className='orange marginT'>Petition</h1>
+        <section className='home whiteBack' >
           <Row>
-            <h3>
-              Reservation From: {this.state.notification.startDay}/
+            <h3 className='marginP'>
+                <strong className='orange'>Reservation From: </strong>{this.state.notification.startDay}/
               {this.state.notification.startMonth}/
               {this.state.notification.startYear} To:{" "}
               {this.state.notification.endDay}/
@@ -93,17 +92,17 @@ class NotificationDetail extends Component {
                   <div>
                     <Row>
                       <Col sm={5}>
-                        <img src={pet.imageUrl} alt={pet.name}></img>
+                        <img className='imgPetition' src={pet.imageUrl} alt={pet.name}></img>
                       </Col>
                       <Col sm={7}>
-                        <h1>
+                        <h1 className='orange'>
                           {pet.name} | Age:{pet.age}
                         </h1>
                         <p>
-                          <strong>Descripción:</strong> {pet.description}
+                          <strong className='orange'>Descripción:</strong> {pet.description}
                         </p>
                         <hr></hr>
-                        <p>Care Details: {pet.careDetails}</p>
+                        <p><strong className='orange'>Care Details: </strong>{pet.careDetails}</p>
                         <p>{this.agresiveMessage(pet)} </p>
                       </Col>
                     </Row>
@@ -118,24 +117,25 @@ class NotificationDetail extends Component {
                     alt={this.state.notification.author.name}
                   ></img>
                   <p>
-                    <strong>Name:</strong> {this.state.notification.author.name}
+                    <strong className='orange'>Name:</strong> {this.state.notification.author.name}
                   </p>
                   <p>
-                    <strong>Phone Number:</strong>{" "}
+                    <strong className='orange'>Phone Number:</strong>{" "}
                     {this.state.notification.author.phone}
                   </p>
                   <p>
-                    <strong>Descriotion:</strong>{" "}
+                    <strong className='orange'>Descriotion:</strong>{" "}
                     {this.state.notification.author.description}
                   </p>
                 </div>
               )}
             </Col>
           </Row>
-          <Button onClick={this.accept}>Accept</Button>
-          <Button onClick={this.eliminateNotification}>Decline</Button>
+          <button as={Link} to='/' onClick={this.accept}>Accept</button>
+          <button onClick={this.eliminateNotification}>Decline</button>
         </section>
       </Container>
+      </div>
     );
   }
 }

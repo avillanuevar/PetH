@@ -4,7 +4,7 @@ import HostService from "../../service/Host.service";
 import UserService from "../../service/Profile.service";
 import ReservationService from "../../service/Reservation.service";
 
-import { Container, Row, Col, Modal, Button,FormControl ,Form } from "react-bootstrap";
+import { Container, Row, Col, Modal, button,FormControl ,Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import EditHome from './editHome'
 import DateTimeRangeContainer from "react-advanced-datetimerange-picker";
@@ -146,10 +146,11 @@ class HomeDetail extends Component {
     };
     return (
       <Container className="pet-details">
-        <section>
+        <section className='home0'>
+          <div className=''>
+              <h1 className='marginT orange'>{this.state.home.title}</h1>
           <Row>
             <Col md={6}>
-              <h1>{this.state.home.title}</h1>
               <p>
                 <strong>Address:</strong>{" "}
                 {`${this.state.home.street}, ${this.state.home.city}, ${this.state.home.postalCode}, ${this.state.home.country}`}
@@ -160,9 +161,9 @@ class HomeDetail extends Component {
               <Link to="/home" className="btn btn-dark">
                 Volver
               </Link>
-              <Button variant="dark" onClick={this.handleEditShow}>
+              <button variant="dark" onClick={this.handleEditShow}>
                 Edit your house
-              </Button>
+              </button>
             </Col>
             <Col md={{ span: 4, offset: 2 }}>
               <img
@@ -173,6 +174,8 @@ class HomeDetail extends Component {
             <Col md={{ span: 4, offset: 2 }}>
             </Col>
           </Row>
+            </div>
+            <p>Select Dates</p>
               <DateTimeRangeContainer
                 start={this.state.start}
                 end={this.state.end}
@@ -190,7 +193,7 @@ class HomeDetail extends Component {
       
         
                       <Form.Group>
-              <Form.Label>Pride per day</Form.Label>
+              <Form.Label className='marginD'>Pride per day</Form.Label>
               <Form.Control
                 type="number"
                 name="price"
@@ -199,15 +202,15 @@ class HomeDetail extends Component {
               />
             </Form.Group>
 
-            <Button variant="dark" size="sm" type="submit">
+            <button variant="dark" size="sm" type="submit">
               Post Reservation
-          </Button>
+          </button>
           </Form>
           <Modal
             show={this.state.showModalWindowEdit}
             onHide={this.handleEditClose}
           >
-            <Modal.Header closeButton>
+            <Modal.Header closebutton>
               <Modal.Title>Edit Details</Modal.Title>
             </Modal.Header>
             <Modal.Body>

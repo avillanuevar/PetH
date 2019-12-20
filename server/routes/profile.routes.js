@@ -46,7 +46,7 @@ profileRoutes.get("/", (req, res) => {
 });
 
 profileRoutes.post("/edit", (req, res) => {
-  const {
+  let {
     name,
     phone,
     description,
@@ -58,34 +58,56 @@ profileRoutes.post("/edit", (req, res) => {
   const userId = _id;
   console.log("reserva de mascota", petReservation);
   console.log("array de pets", copyPets);
+  if (petReservation){
 
-  User.findByIdAndUpdate(
-    userId,
-    {
-      name,
-      phone,
-      description,
-      imageUrl,
-      $addToSet: { petReservation: petReservation }
-    },
-    { new: true }
-  )
+    User.findByIdAndUpdate(
+      userId,
+      {
+        name,
+        phone,
+        description,
+        imageUrl,
+        $addToSet: { petReservation: petReservation }
+      },
+      { new: true }
+    )
     .then(theUser => {
-      Reservation.findByIdAndUpdate(
-        petReservation,
-        {
-          $addToSet: { client: { $each: copyPets } }
-        },
-        { new: true }
-      )
-        .then(theReservation => {
-          console.log("ESTA ES LA RESERVA", theReservation);
-          console.log("ESTE ES EL USER", theUser);
-          res.json({ theReservation, theUser });
-        })
-        .catch(err => console.log("DB error", err));
-    })
-    .catch(err => console.log("DB error", err));
+      if(copyPets&&petReservation){
+        Reservation.findByIdAndUpdate(
+          petReservation,
+          {
+            $addToSet: { client: { $each: copyPets } }
+          },
+          { new: true }
+        )
+          .then(theReservation => {
+            console.log("ESTA ES LA RESERVA", theReservation);
+            console.log("ESTE ES EL USER", theUser);
+            res.json({ theReservation, theUser });
+          })
+          .catch(err => console.log("DB error", err));
+        } 
+      })
+      .catch(err => console.log("DB error", err));
+  }else{
+
+    User.findByIdAndUpdate(
+      userId,
+      {
+        name,
+        phone,
+        description,
+        imageUrl,
+        $addToSet: { petReservation: petReservation }
+      },
+      { new: true }
+    )
+      .then(theUser => {
+        res.json({theUser });
+      })
+      .catch(err => console.log("DB error", err));
+  } 
+  
 });
 
 module.exports = profileRoutes;

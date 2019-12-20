@@ -77,20 +77,21 @@ class ReservationCard extends Component{
 return(
     <div>
     {this.props._id ? ( 
-        <Link to={`/reservationDetails/${this.props._id}`}>
+        <Link className='modelLink' to={`/reservationDetails/${this.props._id}`}>
             <Container> 
-                <Row>
+                <Row >
+                        <div className='modalMarginB'>
                     <Col md={3}>
-                        <img src={this.home.imageUrl} alt={this.home.title} />
+                        <img className='modalImg' src={this.home.imageUrl} alt={this.home.title} />
                     </Col>
-                    <Col md={4}>
+                    <Col md={7}>
                        <h3>{this.home.title}</h3> 
                     </Col>
-                    <Col md={3}>
-                       <p>{this.state.reservation.totalPrice}$</p>
+                    <Col md={2}>
+                       <h3>{this.state.reservation.totalPrice}$</h3>
                     </Col>
-                   
-
+                </div>
+                    <hr/>
                 </Row>
             </Container>
         </Link>

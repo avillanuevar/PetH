@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EditPet from './editPet'
 import PetService from "../../service/Pet.service";
-import { Container, Row, Col, Modal,Button } from "react-bootstrap";
+import { Container, Row, Col, Modal,button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class PetDetail extends Component {
@@ -23,19 +23,20 @@ class PetDetail extends Component {
       .catch(err => console.log(err));
   };
   agresiveMessage = ()=>{
-    if (this.state.pet.agresiveWithPeople && this.state.pet.agresiveWithAnimals)return "Aggressive: with People & other Animals"
-    if (this.state.pet.agresiveWithPeople) return 'Aggressive: with People'
-    if (this.state.pet.agresiveWithAnimals) return 'Aggressive: with other Animals'
-    
+    if (this.state.pet.agresiveWithPeople && this.state.pet.agresiveWithAnimals)
+      return (<div className='display'><p className='orange '>Aggressive:</p><p> with People & other Animals</p></div>)
+    if (this.state.pet.agresiveWithPeople) return <div className='display'><p className='orange '>Aggressive:<p> with People</p></p></div>;
+    if (this.state.pet.agresiveWithAnimals) return <div className='display'><p className='orange '>Aggressive: </p> <p>with other Animals</p></div>;
   }
 
   render() {
     return (
       <Container className="pet-details">
-        <section>
+        <section className='home0'>
+          <div className='petDetail'>
+              <h1 className='marginD orange '>{this.state.pet.name} | Age:{this.state.pet.age}</h1>
           <Row>
             <Col md={6}>
-              <h1>{this.state.pet.name} | Age:{this.state.pet.age}</h1>
               <p>
                 <strong>Descripción:</strong> {this.state.pet.description}
               </p>
@@ -47,9 +48,9 @@ class PetDetail extends Component {
               <Link to="/myPets" className="btn btn-dark">
                 Volver
               </Link>
-              <Button variant="dark" onClick={this.handleShow}>
+              <button variant="dark" onClick={this.handleShow}>
                 Edit your pet
-                </Button>
+                </button>
             </Col>
             <Col md={{ span: 4, offset: 2 }}>
               <img
@@ -58,8 +59,9 @@ class PetDetail extends Component {
               ></img>
             </Col>
           </Row>
+          </div>
           <Modal show={this.state.showModalWindow} onHide={this.handleClose}>
-            <Modal.Header closeButton>
+            <Modal.Header closebutton>
               <Modal.Title>Tell us about your pet</Modal.Title>
             </Modal.Header>
             <Modal.Body>

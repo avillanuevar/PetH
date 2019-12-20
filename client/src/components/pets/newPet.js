@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form } from "react-bootstrap";
+import { button, Form } from "react-bootstrap";
 
 import PetService from "../../service/Pet.service";
 import FilesService from "../../service/Files.service";
@@ -10,7 +10,7 @@ class PetForm extends Component {
     this._petService = new PetService();
     this._filesService = new FilesService();
     this.state = {
-      disabledButton: false,
+      disabledbutton: false,
       buttonText: "Add your pet",
       pet: {
         name: "",
@@ -45,7 +45,7 @@ class PetForm extends Component {
   };
 
   handleFileUpload = e => {
-    this.setState({ disabledButton: true, buttonText: "Subiendo imagen..." });
+    this.setState({ disabledbutton: true, buttonText: "Subiendo imagen..." });
 
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
@@ -57,7 +57,7 @@ class PetForm extends Component {
           response.data.secure_url
         );
         this.setState({
-          disabledButton: false,
+          disabledbutton: false,
           buttonText: "Add your pet",
           pet: { ...this.state.pet, imageUrl: response.data.secure_url }
         });
@@ -130,14 +130,14 @@ class PetForm extends Component {
             checked={this.state.pet.agresiveWithPeople}
           />
         </Form.Group>
-        <Button
+        <button
           variant="dark"
           size="sm"
           type="submit"
-          disabled={this.state.disabledButton}
+          disabled={this.state.disabledbutton}
         >
           {this.state.buttonText}
-        </Button>
+        </button>
       </Form>
     );
   }

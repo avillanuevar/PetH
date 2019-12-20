@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form } from "react-bootstrap";
+import { button, Form } from "react-bootstrap";
 
 import HostService from "../../service/Host.service";
 import FilesService from "../../service/Files.service";
@@ -10,7 +10,7 @@ class HomeForm extends Component {
     this._hostService = new HostService();
     this._filesService = new FilesService();
     this.state = {
-      disabledButton: false,
+      disabledbutton: false,
       buttonText: "Add your home",
       home: {
         title:'',
@@ -48,7 +48,7 @@ class HomeForm extends Component {
   };
 
   handleFileUpload = e => {
-    this.setState({ disabledButton: true, buttonText: "Subiendo imagen..." });
+    this.setState({ disabledbutton: true, buttonText: "Subiendo imagen..." });
 
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
@@ -60,7 +60,7 @@ class HomeForm extends Component {
           response.data.secure_url
         );
         this.setState({
-          disabledButton: false,
+          disabledbutton: false,
           buttonText: "Add ypur home",
           home: { ...this.state.home, imageUrl: response.data.secure_url }
         });
@@ -146,14 +146,14 @@ class HomeForm extends Component {
             checked={this.state.home.petGrooming}
           />
         </Form.Group>
-        <Button
+        <button
           variant="dark"
           size="sm"
           type="submit"
-          disabled={this.state.disabledButton}
+          disabled={this.state.disabledbutton}
         >
           {this.state.buttonText}
-        </Button>
+        </button>
       </Form>
     );
   }

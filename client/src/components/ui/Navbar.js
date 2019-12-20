@@ -13,12 +13,17 @@ class Navigation extends Component {
       reservationRecuest: []
     };
   }
+  logoutUser = () => {
+    this._authService.logout()
+      .then(x => this.props.setUser(false))
+      .catch(err => console.log(err))
+  }
 
   host = () => {
     return (
       this.props.loggedInUser.class == "host" && (
         <Nav.Link as="li">
-          <Link to="/myHome">My Home</Link>
+          <Link className='link' to="/myHome">My Home</Link>
         </Nav.Link>
       )
     );
@@ -42,34 +47,34 @@ class Navigation extends Component {
     return this.props.loggedInUser ? (
       <Navbar className='nav'     expand="md">
         <Navbar.Brand>
-          <Nav.Link as="li">
-            <Link className='link' to="/">PetH</Link>
+          <Nav.Link className='padding0' as="li">
+            <Link className='link logo' to="/">PetH</Link>
           </Nav.Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav className="mr-auto">
             <Nav.Link as="li">
-              <Link to="/profile">Profile</Link>
+              <Link className='link' to="/profile"><strong>Profile</strong></Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/myPets">Pets</Link>
+              <Link className='link' to="/myPets">Pets</Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/reservations">Reservations</Link>
+              <Link className='link' to="/reservations">Reservations</Link>
             </Nav.Link>
             {this.host()}
-            <NavDropdown title="Notifications" id="basic-nav-dropdown">
+            <NavDropdown  id="basic-nav-dropdown">
               {this.props.loggedInUser.notification&&(
               this.props.loggedInUser.notification.map(elm => (
                 <NavDropdown.Item>
-                  <Link to={`requestDetail/${elm._id}`}>New Request</Link>
+                  <Link className='link orange' to={`requestDetail/${elm._id}`}>New Request</Link>
                 </NavDropdown.Item>
               ))
               )}
             </NavDropdown>
 
-            <Nav.Link className="ml-auto" as="li" onClick={this.logoutUser}>
+            <Nav.Link className="link" as="li" onClick={this.logoutUser}>
               Logout
             </Nav.Link>
           </Nav>
@@ -80,19 +85,23 @@ class Navigation extends Component {
         </Navbar.Collapse>
       </Navbar>
     ) : (
-      <Navbar bg="dark" variant="dark" expand="md">
-        <Navbar.Brand>PetVille</Navbar.Brand>
+        <Navbar className='nav' expand="md">
+          <Navbar.Brand>
+            <Nav.Link as="li">
+              <Link className='link logo' to="/">PetH</Link>
+            </Nav.Link>
+          </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav className="mr-auto">
             <Nav.Link as="li">
-              <Link to="/">Home</Link>
+              <Link className='link' to="/">Home</Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/signup">SignUp</Link>
+              <Link className='link' to="/signup">SignUp</Link>
             </Nav.Link>
             <Nav.Link as="li">
-              <Link to="/login">Login</Link>
+              <Link className='link' to="/login">Login</Link>
             </Nav.Link>
           </Nav>
           <Nav className="ml-auto">

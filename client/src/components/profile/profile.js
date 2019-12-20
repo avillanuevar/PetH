@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Modal, Container, Row, Col } from "react-bootstrap";
+import { button, Modal, Container, Row, Col } from "react-bootstrap";
 import ProfileService from "../../service/Profile.service";
 import { Link } from "react-router-dom";
 import EditProfile from "./editProfile";
@@ -32,53 +32,64 @@ class Profile extends Component {
   render() {
     if (this.props.loggedInUser) {
       return (
-        <>
+        <div className='whiteBackDetail'>
+          <section className='backDetails secMarginB'>
           <Container>
-            <h1>Profile</h1>
-            <Button variant="dark" onClick={this.handleHostShow}>
+            <h1 className='marginT orange marginB0'>Profile</h1>
+              <button className='marginHost' onClick={this.handleHostShow}>
               Become a Host
-            </Button>
+            </button>
             <Row>
               <Col md={6}>
                 <img
-                  className="img"
+                  className='profileImg'
                   src={this.props.loggedInUser.imageUrl}
                   alt={this.props.loggedInUser.name}
                 ></img>
               </Col>
               <Col md={6}>
+                  <div className='marginTProf'>
                 <p>
-                  <strong>Name:</strong> {this.props.loggedInUser.name}
+                  <strong className='orange'>Name:</strong> {this.props.loggedInUser.name}
                 </p>
                 <p>
-                  <strong>Phone Number:</strong> {this.props.loggedInUser.phone}
+                    <strong className='orange'>Phone Number:</strong> {this.props.loggedInUser.phone}
                 </p>
                 <p>
-                  <strong>Descriotion:</strong>{" "}
+                    <strong className='orange'>Descriotion:</strong>{" "}
                   {this.props.loggedInUser.description}
                 </p>
-                <Button variant="dark" onClick={this.handleEditShow}>
+                  <button className='marginEdit' onClick={this.handleEditShow}>
                   Editar Usuario
-                </Button>
+                </button>
+                  </div>
               </Col>
             </Row>
+            </Container>
+            </section>
+            <Container>
             <Row>
               <Col md={6}>
-                {this.props.loggedInUser.pets.map(pet => {
+                <h3 className='orange textCenter secMarginB'>My Pets</h3>
+                {this.props.loggedInUser.pets&&this.props.loggedInUser.pets.map(pet => {
                   return (
-                    <Link to={`/petDetails/${pet._id}`}>
+                    <Link className='display around link buttonDetails' to={`/petDetails/${pet._id}`}>
                     
-                      <img src={pet.imageUrl} />
-                      <p>{pet.name}</p>
+                      <img className='detailsImg' src={pet.imageUrl} />
+                      <p className='profileP'>{pet.name}</p>
                     </Link>
                   );
                 })}
               </Col>
               {this.props.loggedInUser.class == "host" && (
                 <Col md={6}>
-                  <Link to="/myHome">
-                    <img src={this.props.loggedInUser.home.imageUrl} />
-                    <p>{this.props.loggedInUser.home.title}</p>
+                  <h3 className='orange textCenter secMarginB'>My Home</h3>
+                  <Link className='textCenter link' to="/myHome">
+                    <div className='buttonHomeP'>
+                      <img className='imgHomrP' src={this.props.loggedInUser.home.imageUrl} />
+                    
+                    <h4>{this.props.loggedInUser.home.title}</h4>
+                    </div>
                   </Link>
                 </Col>
               )}
@@ -88,7 +99,7 @@ class Profile extends Component {
             show={this.state.showModalEditWindow}
             onHide={this.handleEditClose}
           >
-            <Modal.Header closeButton>
+            <Modal.Header closebutton>
               <Modal.Title>Edit Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -103,7 +114,7 @@ class Profile extends Component {
             show={this.state.showModalHostWindow}
             onHide={this.handleHostClose}
           >
-            <Modal.Header closeButton>
+            <Modal.Header closebutton>
               <Modal.Title>Become a host</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -114,7 +125,7 @@ class Profile extends Component {
               />
             </Modal.Body>
           </Modal>
-        </>
+          </div>
       );
     } else {
       return null;
