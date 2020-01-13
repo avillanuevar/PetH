@@ -38,7 +38,8 @@ class HomeDetail extends Component {
         price: 15,
       },
       showModalWindowEdit: false,
-      showModalWindowReservation: false
+      showModalWindowReservation: false,
+      dateTxt: "Enter Date"
     };
   }
   handleEditShow = () => this.setState({ showModalWindowEdit: true });
@@ -128,7 +129,9 @@ class HomeDetail extends Component {
     let endYear = end[2]
     this.setState({
       reservation: {
-        ...this.state.reservation, startDay: starDay, startMonth: startMonth, startYear: startYear, endDay: endDay, endMonth: endMonth, endYear: endYear}});
+        ...this.state.reservation, startDay: starDay, startMonth: startMonth, startYear: startYear, endDay: endDay, endMonth: endMonth, endYear: endYear},
+      dateTxt: `${start[0]}/${start[1]}/${start[2]} - ${end[0]}/${end[1]}/${end[2]}`
+      });
   }
 
 
@@ -186,7 +189,7 @@ class HomeDetail extends Component {
                   id="formControlsTextB"
                   type="text"
                   label="Text"
-                  placeholder="Enter text"
+                  placeholder={this.state.dateTxt}
                 />
               </DateTimeRangeContainer>
           <Form onSubmit={this.handleSubmit}>

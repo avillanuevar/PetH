@@ -111,7 +111,7 @@ class HomeForm extends Component {
               type="text"
               name="city"
               onChange={this.handleInputChange}
-              value={this.state.home.city}
+              value={this.state.home.city.toLowerCase()}
             />
           </Form.Group>
           <Form.Group>

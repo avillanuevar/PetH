@@ -279,3 +279,9 @@ img {
 .marLeft{
   margin-left: 45px;
 }
+.allCenter{
+  align-content: center;
+}
+.paddingSize{
+  padding: 3px 20px;
+}

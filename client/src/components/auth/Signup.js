@@ -30,8 +30,9 @@ class SignupForm extends Component {
 
   render() {
     return (
+      <section className = 'home0'>
       <Container>
-        <h1>Registro</h1>
+          <h1 className='marginT orange'>SignUp</h1>
 
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
@@ -53,19 +54,20 @@ class SignupForm extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
-              type="text"
+              type="password"
               name="password"
               onChange={this.handleInputChange}
               value={this.state.password}
             />
           </Form.Group>
-          <button variant="dark" type="submit">
-            Registrarme
+            <button className="paddingSize" type="submit">
+            SignUp
           </button>
         </Form>
       </Container>
+      </section>
     );
   }
 }

@@ -42,14 +42,17 @@ class MyReservations extends Component {
                 
                   <div>
                     <h2>Reservations for your Pets</h2>
-                    {this.state.user.petReservation.map(elm =>
+                {this.state.user.petReservation ?
+                    this.state.user.petReservation.map(elm =>
+                    elm &&
                       elm.client.map(pet => (
                         <div className='modalMarginB'>
                           <img className='myResImg' src={pet.imageUrl} alt={pet.name}></img>
                           <h4 className='myResP'>{pet.name}</h4>
                         </div>
                       ))
-                    )}
+                    ):null 
+                }
                   </div>
                   <div >
                     <div>
@@ -75,13 +78,17 @@ class MyReservations extends Component {
                 </div>
               ) : (
                 <div>
-                  <h2>Reservations for your Pets</h2>
-                  {this.state.user.petReservation==[] ? this.state.user.petReservation.map(elm =>
+                <h2>Reservations for your Pets</h2>
+                {this.state.user.petReservation  ?
+                  this.state.user.petReservation.map(elm =>
                     elm.client.map(pet => (
-                      <img src={pet.imageUrl} alt={pet.name}></img>
+                      <div className='modalMarginB'>
+                        <img className='myResImg' src={pet.imageUrl} alt={pet.name}></img>
+                        <h4 className='myResP'>{pet.name}</h4>
+                      </div>
                     ))
-                  ):null
-                  }
+                  ) : null
+                }
                 </div>
               )}
           

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { button, Form, Container } from "react-bootstrap";
 
 import Service from "../../service/Auth.service";
+
 
 class LoginForm extends Component {
   constructor(props) {
@@ -40,30 +42,32 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <section className='home0'>
-        <h1 className='marginT'>Iniciar sesión</h1>
+      <section className='home0 allCenter'>
+      <Container>
+        <h1 className='marginT orange'>LogIn</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <div className='imgPetCard'>
-            <label>Username:</label>
-            <input
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
               type="text"
               name="username"
               onChange={this.handleInputChange}
               value={this.state.username}
             />
-          </div>
-          <div className='imgPetCard orange'>
-            <label>Password:</label>
-            <input
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
               type="password"
               name="password"
               onChange={this.handleInputChange}
               value={this.state.password}
             />
-          </div>
-          <button type="submit">Iniciar sesión</button>
-        </form>
+          </Form.Group>
+            <button className="paddingSize" type="submit">LogIn</button>
+        </Form>
+        </Container>
       </section>
     );
   }

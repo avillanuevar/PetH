@@ -42,10 +42,10 @@ class NotificationDetail extends Component {
     this._profileService.edit({
       _id: this.state.notification.author._id,
       petReservation: this.state.notification.reciver.houseReservation,
-      name: this.state.notification.reciver.name,
-      description: this.state.notification.reciver.description,
-      phone: this.state.notification.reciver.phone,
-      imageUrl: this.state.notification.reciver.imageUrl,
+      name: this.state.notification.author.name,
+      description: this.state.notification.author.description,
+      phone: this.state.notification.author.phone,
+      imageUrl: this.state.notification.author.imageUrl,
       copyPets: copyPets
     });
     this.props.history.push('/')

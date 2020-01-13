@@ -28,7 +28,8 @@ class Home extends Component{
                 endYear: 0,
                 city:''
             },
-            showModalWindowSearch: false
+            showModalWindowSearch: false,
+          dateTxt: "Enter Date"
 
         }
     }
@@ -44,7 +45,7 @@ class Home extends Component{
     handleInputChange = e => {
         let { name, value } = e.target;
         this.setState({
-            reservation: { ...this.state.reservation, [name]: value }
+            reservation: { ...this.state.reservation, [name]: value.toLowerCase() }
         });
     };
 
@@ -94,7 +95,8 @@ class Home extends Component{
         this.setState({
             reservation: {
                 ...this.state.reservation, startDay: starDay, startMonth: startMonth, startYear: startYear, endDay: endDay, endMonth: endMonth, endYear: endYear
-            }
+            },
+          dateTxt: `${start[0]}/${start[1]}/${start[2]} - ${end[0]}/${end[1]}/${end[2]}`
         });
     }
 
@@ -130,7 +132,7 @@ class Home extends Component{
                         id="formControlsTextB"
                         type="text"
                         label="Text"
-                        placeholder="Enter text"
+                        placeholder={this.state.dateTxt}
                       />
                     </DateTimeRangeContainer>
                   </Col>
